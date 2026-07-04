@@ -1601,16 +1601,14 @@ html[lang="en"] .footer-nav-label {
 }
 
 .footer-pmay-logo {
-  width: 250px;
-  height: 66px;
-  overflow: hidden;
+  height: 78px;
   flex: 0 0 auto;
 }
 
 .footer-pmay-logo img {
-  width: 270px;
-  max-width: none;
-  transform: translate(-21px, -12px);
+  height: 100%;
+  width: auto;
+  display: block;
 }
 
 .footer-pmay p {
@@ -3349,6 +3347,6 @@ body {
   }
 
   .footer-pmay-logo {
-    width: 220px;
+    height: 64px;
   }
 }
