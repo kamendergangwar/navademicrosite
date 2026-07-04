@@ -379,6 +379,10 @@ ul { list-style: none; }
   padding: 0;
   transition: all 0.25s ease;
 }
+/* Single hero banner: slider controls not needed */
+.hero-arrow,
+.hero-dots { display: none; }
+
 .hero-dots button.is-active {
   background: #b43745;
   border-color: #ffffff;
@@ -505,6 +509,16 @@ ul { list-style: none; }
   object-fit: cover;
   border-radius: 40px;
   box-shadow: none;
+}
+.about-image video {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 40px;
+  background: #000;
 }
 
 
@@ -1979,6 +1993,13 @@ html[lang="en"] .footer-nav-label {
     width: 330px;
     opacity: 0.14;
   }
+  /* Banner text is baked into the image: shrink hero to the
+     banner's own aspect ratio instead of cropping it */
+  .hero {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4271 / 2500;
+  }
   .hero-slide img,
   .hero-slide video {
     object-fit: cover;
@@ -2212,9 +2233,6 @@ html[lang="en"] .footer-nav-label {
     bottom: auto;
   }
 
-  .hero {
-    height: 100svh;
-  }
   .hero-arrow {
     width: 38px;
     height: 38px;
@@ -2575,7 +2593,7 @@ body {
   }
 
   .hero {
-    min-height: 560px;
+    min-height: 0;
   }
 
   .slide-caption {
@@ -2645,7 +2663,7 @@ body {
   }
 
   .hero {
-    min-height: 520px;
+    min-height: 0;
   }
 
   .hero::before,
@@ -2680,6 +2698,7 @@ body {
   }
 
   .about-image img,
+  .about-image video,
   .about-image::before {
     border-radius: 24px;
   }
