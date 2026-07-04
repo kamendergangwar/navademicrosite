@@ -10,28 +10,10 @@
   const siteNav = document.getElementById('site-nav');
   const navLinks = siteNav.querySelectorAll('a');
   const sections = ['about', 'why', 'connectivity', 'projects', 'partners'].map(id => document.getElementById(id));
-  const headerRevealZone = 28;
-  const headerAutoHideQuery = window.matchMedia('(min-width: 1181px)');
-  let headerHideTimer;
   let scrollTicking = false;
 
-  function showHeader() {
-    header.classList.remove('is-hidden');
-    scheduleHeaderHide();
-  }
-
-  function hideHeader() {
-    const isMenuOpen = siteNav.classList.contains('is-open');
-    if (headerAutoHideQuery.matches && !isMenuOpen) header.classList.add('is-hidden');
-  }
-
-  function scheduleHeaderHide() {
-    clearTimeout(headerHideTimer);
-    if (!headerAutoHideQuery.matches) {
-      header.classList.remove('is-hidden');
-      return;
-    }
-    headerHideTimer = setTimeout(hideHeader, 3000);
+  function setHeaderHeight() {
+    document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
   }
 
   function updateScrollspy() {
@@ -70,14 +52,9 @@
     }
   }, { passive: true });
 
-  document.addEventListener('pointermove', e => {
-    if (headerAutoHideQuery.matches && e.clientY <= headerRevealZone) showHeader();
-  }, { passive: true });
-
-  headerAutoHideQuery.addEventListener('change', scheduleHeaderHide);
-
   updateScrollspy();
-  scheduleHeaderHide();
+  setHeaderHeight();
+  window.addEventListener('resize', setHeaderHeight);
 
 
   /* -------- MOBILE MENU -------- */
@@ -86,12 +63,6 @@
   menuToggle.addEventListener('click', () => {
     const open = siteNav.classList.toggle('is-open');
     menuToggle.setAttribute('aria-expanded', String(open));
-    if (open) {
-      clearTimeout(headerHideTimer);
-      header.classList.remove('is-hidden');
-    } else {
-      scheduleHeaderHide();
-    }
   });
 
   navLinks.forEach(link => {
@@ -102,7 +73,6 @@
 
       siteNav.classList.remove('is-open');
       menuToggle.setAttribute('aria-expanded', 'false');
-      scheduleHeaderHide();
     });
   });
 
