@@ -2155,6 +2155,88 @@ html[lang="en"] .footer-nav-label {
 }
 
 
+/* ==================== UNIT / FLOOR PLAN ==================== */
+.proj-plan-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+.proj-plan-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 38px;
+  border-radius: 999px;
+  border: 2px solid #2d67a4;
+  background: transparent;
+  color: #2d67a4;
+  font-family: inherit;
+  font-size: clamp(0.8rem, 0.95vw, 0.92rem);
+  font-weight: 800;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.proj-plan-btn:hover {
+  background: #2d67a4;
+  color: #ffffff;
+}
+
+.plan-modal-box {
+  width: min(720px, calc(100% - 28px));
+}
+.plan-modal-title {
+  margin: 4px 0 16px;
+  text-align: center;
+  color: #34479d;
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  font-weight: 800;
+}
+.plan-figure {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f3f4f8;
+}
+.plan-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(380px, 55svh);
+  object-fit: cover;
+  filter: blur(7px);
+  transform: scale(1.04);
+  user-select: none;
+  pointer-events: none;
+}
+.plan-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+.plan-overlay-inner {
+  background: rgba(255,255,255,.94);
+  border-radius: 14px;
+  padding: 22px 28px;
+  text-align: center;
+  box-shadow: 0 10px 34px rgba(10,24,38,.18);
+}
+.plan-overlay-text {
+  margin: 0 0 6px;
+  font-weight: 800;
+  color: #34375f;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+}
+.plan-cta {
+  width: auto;
+  min-width: 165px;
+  padding: 0 22px;
+}
+
+
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 1200px) {
   .header-capsule {

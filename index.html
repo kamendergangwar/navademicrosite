@@ -234,6 +234,16 @@
                 <p data-en="RERA carpet Area: 29.99 sq. mt.">रेरा कार्पेट एरिया - २९.९९ चौ. मीटर</p>
                 <p data-en="Carpet area: 322 sq.ft.">कार्पेट एरिया - ३२२ चौ. फूट</p>
               </div>
+              <div class="proj-plan-btns">
+                <button class="proj-plan-btn js-plan-btn" type="button" data-plan="unit">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M12 3v7"/><path d="M12 10h9"/><path d="M12 14v7"/><path d="M3 14h5"/></svg>
+                  <span data-en="Unit Plan">युनिट प्लॅन</span>
+                </button>
+                <button class="proj-plan-btn js-plan-btn" type="button" data-plan="floor">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M12 3v18"/><path d="M3 12h18"/></svg>
+                  <span data-en="Floor Plan">फ्लोअर प्लॅन</span>
+                </button>
+              </div>
             </div>
           </article>
 
@@ -569,6 +579,28 @@
         </div>
         <div class="image-viewer-stage" id="image-viewer-stage">
           <img id="image-viewer-img" src="" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== UNIT / FLOOR PLAN MODAL ===== -->
+    <div class="modal" id="plan-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="plan-modal-title">
+      <div class="modal-backdrop" id="plan-modal-backdrop"></div>
+      <div class="modal-box plan-modal-box">
+        <button class="modal-close" id="plan-modal-close" type="button" aria-label="बंद करा">&#10005;</button>
+        <h2 class="plan-modal-title" id="plan-modal-title">
+          <span id="plan-title-unit" data-en="Unit Plan">युनिट प्लॅन</span>
+          <span id="plan-title-floor" hidden data-en="Floor Plan">फ्लोअर प्लॅन</span>
+        </h2>
+        <div class="plan-figure">
+          <img id="plan-img-unit" src="Assets/project Images/unit-plan-placeholder.png" alt="Unit Plan" loading="lazy" />
+          <img id="plan-img-floor" src="Assets/project Images/floor-plan-placeholder.png" alt="Floor Plan" hidden loading="lazy" />
+          <div class="plan-overlay">
+            <div class="plan-overlay-inner">
+              <p class="plan-overlay-text" data-en="To view and download the plan">प्लॅन पाहण्यासाठी आणि डाउनलोड करण्यासाठी</p>
+              <button class="form-submit plan-cta" id="plan-enquire-btn" type="button" data-en="Click Here">येथे क्लिक करा</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

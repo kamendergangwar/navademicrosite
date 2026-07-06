@@ -394,11 +394,63 @@
     });
   });
 
+  document.querySelectorAll('input[name="pmay-inline"], input[name="pmay-modal"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (radio.checked) openPmayPopup(radio.value === 'PMAY' ? 'pmay' : 'non-pmay');
+    });
+  });
+
   pmayPopupClose.addEventListener('click', closePmayPopup);
   pmayPopupBg.addEventListener('click', closePmayPopup);
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && pmayPopup.classList.contains('is-open')) closePmayPopup();
   });
+
+  /* -------- UNIT / FLOOR PLAN MODAL -------- */
+  const planModal = document.getElementById('plan-modal');
+  const planModalClose = document.getElementById('plan-modal-close');
+  const planModalBackdrop = document.getElementById('plan-modal-backdrop');
+  const planTitleUnit = document.getElementById('plan-title-unit');
+  const planTitleFloor = document.getElementById('plan-title-floor');
+  const planImgUnit = document.getElementById('plan-img-unit');
+  const planImgFloor = document.getElementById('plan-img-floor');
+  const planEnquireBtn = document.getElementById('plan-enquire-btn');
+
+  function openPlanModal(type) {
+    const isUnit = type === 'unit';
+    planTitleUnit.hidden = !isUnit;
+    planImgUnit.hidden = !isUnit;
+    planTitleFloor.hidden = isUnit;
+    planImgFloor.hidden = isUnit;
+    planModal.classList.add('is-open');
+    planModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePlanModal() {
+    planModal.classList.remove('is-open');
+    planModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  if (planModal) {
+    document.querySelectorAll('.js-plan-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        openPlanModal(btn.getAttribute('data-plan'));
+      });
+      btn.addEventListener('keydown', e => e.stopPropagation());
+    });
+    planModalClose.addEventListener('click', closePlanModal);
+    planModalBackdrop.addEventListener('click', closePlanModal);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && planModal.classList.contains('is-open')) closePlanModal();
+    });
+    planEnquireBtn.addEventListener('click', () => {
+      closePlanModal();
+      openModal();
+    });
+  }
 
   const footer = document.querySelector('.site-footer');
   if (floatingCtas && footer && 'IntersectionObserver' in window) {
