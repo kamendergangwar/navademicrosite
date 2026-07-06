@@ -1826,7 +1826,7 @@ html[lang="en"] .footer-nav-label {
 }
 
 .modal-title {
-  font-size: clamp(1.35rem, 2.05vw, 2.25rem);
+  font-size: clamp(1.15rem, 1.65vw, 1.8rem);
   font-weight: 700;
   color: #34479d;
   line-height: 1.2;
