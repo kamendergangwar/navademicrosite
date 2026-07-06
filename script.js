@@ -89,12 +89,12 @@
 
 
   /* -------- HERO SLIDER -------- */
-  const slides   = [...document.querySelectorAll('.hero-slide')];
+  const slides = [...document.querySelectorAll('.hero-slide')];
   const dotsWrap = document.getElementById('hero-dots');
-  const prevBtn  = document.getElementById('hero-prev');
-  const nextBtn  = document.getElementById('hero-next');
-  let   current  = 0;
-  let   timer;
+  const prevBtn = document.getElementById('hero-prev');
+  const nextBtn = document.getElementById('hero-next');
+  let current = 0;
+  let timer;
   const imageSlideDelay = 5500;
 
   // Build dot buttons
@@ -127,7 +127,7 @@
     const activeVideo = slides[current].querySelector('video');
     if (activeVideo) {
       activeVideo.currentTime = 0;
-      activeVideo.play().catch(() => {});
+      activeVideo.play().catch(() => { });
     }
   }
 
@@ -169,10 +169,10 @@
 
 
   /* -------- PROJECT CAROUSEL (mobile) -------- */
-  const projCards  = [...document.querySelectorAll('.proj-card')];
-  const projPrev   = document.getElementById('proj-prev');
-  const projNext   = document.getElementById('proj-next');
-  let   projCur    = 0;
+  const projCards = [...document.querySelectorAll('.proj-card')];
+  const projPrev = document.getElementById('proj-prev');
+  const projNext = document.getElementById('proj-next');
+  let projCur = 0;
 
   function projVisibleCount() {
     return window.innerWidth > 1180 ? 3 : 1;
@@ -184,10 +184,10 @@
     if (projCur > maxIndex) projCur = maxIndex;
     const visibleIndexes = count === 3 && projCards.length > 1
       ? [
-          (projCur - 1 + projCards.length) % projCards.length,
-          projCur,
-          (projCur + 1) % projCards.length
-        ]
+        (projCur - 1 + projCards.length) % projCards.length,
+        projCur,
+        (projCur + 1) % projCards.length
+      ]
       : [projCur];
     const featuredIndex = projCur;
 
@@ -257,8 +257,8 @@
   /* -------- ACCORDION -------- */
   document.querySelectorAll('.acc-trigger').forEach(trigger => {
     trigger.addEventListener('click', () => {
-      const item   = trigger.closest('.acc-item');
-      const body   = item.querySelector('.acc-body');
+      const item = trigger.closest('.acc-item');
+      const body = item.querySelector('.acc-body');
       const isOpen = item.classList.contains('acc-item--open');
 
       // Close all
@@ -280,13 +280,13 @@
 
 
   /* -------- MODAL -------- */
-  const modal        = document.getElementById('enquiry-modal');
-  const modalClose   = document.getElementById('modal-close');
-  const backdrop     = document.getElementById('modal-backdrop');
-  const openFloat    = document.getElementById('open-modal-float');
+  const modal = document.getElementById('enquiry-modal');
+  const modalClose = document.getElementById('modal-close');
+  const backdrop = document.getElementById('modal-backdrop');
+  const openFloat = document.getElementById('open-modal-float');
   const floatingCtas = document.querySelector('.floating-ctas');
-  const enquiryForm  = document.getElementById('enquiry-form');
-  const formSuccess  = document.getElementById('form-success');
+  const enquiryForm = document.getElementById('enquiry-form');
+  const formSuccess = document.getElementById('form-success');
 
   function openModal() {
     if (modal.classList.contains('is-open')) return;
@@ -346,23 +346,23 @@
   }
 
   /* -------- PMAY INFO POPUP -------- */
-  const pmayPopup      = document.getElementById('pmay-popup');
+  const pmayPopup = document.getElementById('pmay-popup');
   const pmayPopupTitle = document.getElementById('pmay-popup-title');
-  const pmayPopupBody  = document.getElementById('pmay-popup-body');
-  const pmayPopupIcon  = document.getElementById('pmay-popup-icon');
+  const pmayPopupBody = document.getElementById('pmay-popup-body');
+  const pmayPopupIcon = document.getElementById('pmay-popup-icon');
   const pmayPopupClose = document.getElementById('pmay-popup-close');
-  const pmayPopupBg    = document.getElementById('pmay-popup-backdrop');
+  const pmayPopupBg = document.getElementById('pmay-popup-backdrop');
 
   const pmayContent = {
     pmay: {
-      title_mr: 'PMAY (प्रधानमंत्री आवास योजना)',
-      title_en: 'PMAY (Pradhan Mantri Awas Yojana)',
+      title_mr: 'PMAY',
+      title_en: 'PMAY',
       body_mr: 'वार्षिक कौटुंबिक उत्पन्न ₹६ लाख किंवा त्यापेक्षा कमी असलेले अर्जदार PMAY साठी पात्र आहेत. कौटुंबिक उत्पन्नामध्ये, अर्जदार अविवाहित असल्यास केवळ अर्जदाराचे उत्पन्न, आणि अर्जदार विवाहित असल्यास अर्जदार, पती/पत्नी तसेच १८ वर्षांखालील अविवाहित मुलांचे एकत्रित उत्पन्न यांचाच समावेश केला जाईल.',
       body_en: 'Applicants with an annual household income of ₹6 Lakhs or less are eligible for PMAY. Household income includes only the applicant\'s income if unmarried, and the combined income of the applicant, spouse, and unmarried children under 18 if married.',
       iconClass: 'pmay-icon'
     },
     'non-pmay': {
-      title_mr: 'NON-PMAY (बिगर-PMAY)',
+      title_mr: 'NON-PMAY',
       title_en: 'NON-PMAY',
       body_mr: 'वार्षिक कौटुंबिक उत्पन्न ₹६ लाखांपेक्षा जास्त असलेले अर्जदार Non-PMAY श्रेणीत येतात. कौटुंबिक उत्पन्नामध्ये, अर्जदार अविवाहित असल्यास केवळ अर्जदाराचे उत्पन्न, आणि अर्जदार विवाहित असल्यास अर्जदार, पती/पत्नी तसेच १८ वर्षांखालील अविवाहित मुलांचे एकत्रित उत्पन्न यांचाच समावेश केला जाईल.',
       body_en: 'Applicants with an annual household income of more than ₹6 Lakhs fall under the Non-PMAY category. Household income includes only the applicant\'s income if unmarried, and the combined income of the applicant, spouse, and unmarried children under 18 if married.',
@@ -375,8 +375,8 @@
     if (!data) return;
     const isEn = currentLang === 'en';
     pmayPopupTitle.textContent = isEn ? data.title_en : data.title_mr;
-    pmayPopupBody.textContent  = isEn ? data.body_en  : data.body_mr;
-    pmayPopupIcon.className    = 'pmay-popup-icon ' + data.iconClass;
+    pmayPopupBody.textContent = isEn ? data.body_en : data.body_mr;
+    pmayPopupIcon.className = 'pmay-popup-icon ' + data.iconClass;
     pmayPopup.classList.add('is-open');
     pmayPopup.setAttribute('aria-hidden', 'false');
   }
@@ -552,7 +552,7 @@
         el.setAttribute('src', nextSrc);
         if (typeof el.load === 'function') el.load();
         if (typeof el.play === 'function') {
-          el.play().catch(() => {});
+          el.play().catch(() => { });
         }
       }
     });
