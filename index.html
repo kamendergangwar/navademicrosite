@@ -221,10 +221,11 @@
               <div class="proj-card-head">
                 <h3 class="proj-name" data-en="CIDCO Estate Project, Navade">सिडको इस्टेट प्रकल्प, नावडे</h3>
                 <p class="proj-location" data-en="Plot No. 1, Sector 40, Navade, Taloja">प्लॉट नं. १, सेक्टर ४०, नावडे, तळोजा</p>
-                <p class="proj-rera-line" data-en="<span class='rera-status'>PMAY</span> Maha RERA no.: XXXXXXXXXXXX"><span class="rera-status">PMAY</span> महारेरा नोंदणी क्रमांक: XXXXXXXXXXXX</p>
+                <p class="proj-rera-line" data-en="<span class='rera-status'>NON-PMAY</span> Maha RERA no.: XXXXXXXXXXXX"><span class="rera-status">NON-PMAY</span> महारेरा नोंदणी क्रमांक: XXXXXXXXXXXX</p>
                 <div class="proj-top-row">
                   <span class="proj-type-bar" data-en="Unit type: 1 BHK">घराचा प्रकार: १ बीएचके</span>
                 </div>
+                <a class="proj-direction-link" href="https://www.google.com/maps/place/CIDCO+PROJECT+Nawade/@19.0542034,73.1078881,1074m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3be7e90020fa39e9:0xe7e12c1b5481eae4!2sBGS+NAVADE+site!8m2!3d19.0544845!4d73.1037976!16s%2Fg%2F11lnpnpksz!3m5!1s0x3be7e90055525f99:0xc3db969ac1e95c86!8m2!3d19.0542091!4d73.107619!16s%2Fg%2F11z7n35k1s?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" data-en="Get Direction" onclick="event.stopPropagation();">दिशा मिळवा</a>
               </div>
               <div class="proj-image-stage">
                 <img class="proj-img-cover" src="Assets/project Images/navade-coming-soon.png" alt="सिडको इस्टेट प्रकल्प, नावडे - लवकरच येत आहे" loading="lazy" />
@@ -355,6 +356,27 @@
               </div>
               <div class="form-field">
                 <input type="email" name="email" placeholder="ई-मेल आईडी (अनिवार्य नाही)" autocomplete="email" data-en-placeholder="Email ID (optional)" />
+              </div>
+              <div class="form-field form-field--radio">
+                <span class="radio-label" data-en="Category*">श्रेणी*</span>
+                <div class="radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="pmay-inline" value="PMAY" required />
+                    <span class="radio-custom"></span>
+                    <span class="radio-text" data-en="PMAY">PMAY</span>
+                    <button type="button" class="radio-info-btn js-pmay-info" data-type="pmay" aria-label="PMAY info" data-en-aria="PMAY info">
+                      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                    </button>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="pmay-inline" value="NON-PMAY" required />
+                    <span class="radio-custom"></span>
+                    <span class="radio-text" data-en="NON-PMAY">NON-PMAY</span>
+                    <button type="button" class="radio-info-btn js-pmay-info" data-type="non-pmay" aria-label="NON-PMAY info" data-en-aria="NON-PMAY info">
+                      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                    </button>
+                  </label>
+                </div>
               </div>
               <label class="form-check">
                 <input type="checkbox" required />
@@ -496,6 +518,27 @@
               <div class="form-field">
                 <input type="email" name="email" placeholder="ई-मेल आईडी (अनिवार्य नाही)" autocomplete="email" data-en-placeholder="Email ID (optional)" />
               </div>
+              <div class="form-field form-field--radio">
+                <span class="radio-label" data-en="Category*">श्रेणी*</span>
+                <div class="radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="pmay-modal" value="PMAY" required />
+                    <span class="radio-custom"></span>
+                    <span class="radio-text" data-en="PMAY">PMAY</span>
+                    <button type="button" class="radio-info-btn js-pmay-info" data-type="pmay" aria-label="PMAY info" data-en-aria="PMAY info">
+                      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                    </button>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="pmay-modal" value="NON-PMAY" required />
+                    <span class="radio-custom"></span>
+                    <span class="radio-text" data-en="NON-PMAY">NON-PMAY</span>
+                    <button type="button" class="radio-info-btn js-pmay-info" data-type="non-pmay" aria-label="NON-PMAY info" data-en-aria="NON-PMAY info">
+                      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                    </button>
+                  </label>
+                </div>
+              </div>
               <label class="form-check">
                 <input type="checkbox" required />
                 <span data-en="I agree to the Terms & Conditions and <strong>Privacy Policy</strong>.">मी अटी आणि शर्तींशी आणि <strong>नियम आणि गोपनीयतेच्या,</strong> धोरणाशी सहमती दर्शवली आहे.</span>
@@ -527,6 +570,19 @@
         <div class="image-viewer-stage" id="image-viewer-stage">
           <img id="image-viewer-img" src="" alt="" />
         </div>
+      </div>
+    </div>
+
+    <!-- ===== PMAY INFO POPUP ===== -->
+    <div class="pmay-popup" id="pmay-popup" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="pmay-popup-backdrop" id="pmay-popup-backdrop"></div>
+      <div class="pmay-popup-box">
+        <button class="pmay-popup-close" id="pmay-popup-close" type="button" aria-label="Close">&#10005;</button>
+        <div class="pmay-popup-icon" id="pmay-popup-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        </div>
+        <h3 class="pmay-popup-title" id="pmay-popup-title"></h3>
+        <p class="pmay-popup-body" id="pmay-popup-body"></p>
       </div>
     </div>
 

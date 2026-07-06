@@ -345,6 +345,61 @@
     });
   }
 
+  /* -------- PMAY INFO POPUP -------- */
+  const pmayPopup      = document.getElementById('pmay-popup');
+  const pmayPopupTitle = document.getElementById('pmay-popup-title');
+  const pmayPopupBody  = document.getElementById('pmay-popup-body');
+  const pmayPopupIcon  = document.getElementById('pmay-popup-icon');
+  const pmayPopupClose = document.getElementById('pmay-popup-close');
+  const pmayPopupBg    = document.getElementById('pmay-popup-backdrop');
+
+  const pmayContent = {
+    pmay: {
+      title_mr: 'PMAY (प्रधानमंत्री आवास योजना)',
+      title_en: 'PMAY (Pradhan Mantri Awas Yojana)',
+      body_mr: 'वार्षिक कौटुंबिक उत्पन्न ₹६ लाख किंवा त्यापेक्षा कमी असलेले अर्जदार PMAY साठी पात्र आहेत. कौटुंबिक उत्पन्नामध्ये, अर्जदार अविवाहित असल्यास केवळ अर्जदाराचे उत्पन्न, आणि अर्जदार विवाहित असल्यास अर्जदार, पती/पत्नी तसेच १८ वर्षांखालील अविवाहित मुलांचे एकत्रित उत्पन्न यांचाच समावेश केला जाईल.',
+      body_en: 'Applicants with an annual household income of ₹6 Lakhs or less are eligible for PMAY. Household income includes only the applicant\'s income if unmarried, and the combined income of the applicant, spouse, and unmarried children under 18 if married.',
+      iconClass: 'pmay-icon'
+    },
+    'non-pmay': {
+      title_mr: 'NON-PMAY (बिगर-PMAY)',
+      title_en: 'NON-PMAY',
+      body_mr: 'वार्षिक कौटुंबिक उत्पन्न ₹६ लाखांपेक्षा जास्त असलेले अर्जदार Non-PMAY श्रेणीत येतात. कौटुंबिक उत्पन्नामध्ये, अर्जदार अविवाहित असल्यास केवळ अर्जदाराचे उत्पन्न, आणि अर्जदार विवाहित असल्यास अर्जदार, पती/पत्नी तसेच १८ वर्षांखालील अविवाहित मुलांचे एकत्रित उत्पन्न यांचाच समावेश केला जाईल.',
+      body_en: 'Applicants with an annual household income of more than ₹6 Lakhs fall under the Non-PMAY category. Household income includes only the applicant\'s income if unmarried, and the combined income of the applicant, spouse, and unmarried children under 18 if married.',
+      iconClass: 'non-pmay-icon'
+    }
+  };
+
+  function openPmayPopup(type) {
+    const data = pmayContent[type];
+    if (!data) return;
+    const isEn = currentLang === 'en';
+    pmayPopupTitle.textContent = isEn ? data.title_en : data.title_mr;
+    pmayPopupBody.textContent  = isEn ? data.body_en  : data.body_mr;
+    pmayPopupIcon.className    = 'pmay-popup-icon ' + data.iconClass;
+    pmayPopup.classList.add('is-open');
+    pmayPopup.setAttribute('aria-hidden', 'false');
+  }
+
+  function closePmayPopup() {
+    pmayPopup.classList.remove('is-open');
+    pmayPopup.setAttribute('aria-hidden', 'true');
+  }
+
+  document.querySelectorAll('.js-pmay-info').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openPmayPopup(btn.getAttribute('data-type'));
+    });
+  });
+
+  pmayPopupClose.addEventListener('click', closePmayPopup);
+  pmayPopupBg.addEventListener('click', closePmayPopup);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && pmayPopup.classList.contains('is-open')) closePmayPopup();
+  });
+
   const footer = document.querySelector('.site-footer');
   if (floatingCtas && footer && 'IntersectionObserver' in window) {
     const footerObserver = new IntersectionObserver(entries => {
