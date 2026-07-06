@@ -506,13 +506,15 @@ ul { list-style: none; }
   border-radius: 40px;
   box-shadow: none;
 }
-.about-image video {
+.about-image video,
+.about-image iframe {
   display: block;
   position: relative;
   z-index: 1;
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+  border: 0;
   border-radius: 40px;
   background: #000;
 }
@@ -1945,6 +1947,24 @@ html[lang="en"] .footer-nav-label {
 }
 
 
+/* ==================== ENQUIRY SECTION ==================== */
+.enquiry-section {
+  background: #f7f7ff;
+  padding: clamp(66px, 7.5vw, 108px) clamp(16px, 5vw, 64px) clamp(54px, 6vw, 82px);
+}
+.enquiry-box {
+  width: 100%;
+  background: white;
+  border-radius: 24px;
+  padding: clamp(20px, 2vw, 30px) clamp(26px, 2.5vw, 42px) clamp(20px, 2vw, 28px);
+  box-shadow: 0 18px 48px rgba(10, 24, 38, .12);
+}
+.modal-header--no-logo {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 1200px) {
   .header-capsule {
@@ -2302,6 +2322,9 @@ html[lang="en"] .footer-nav-label {
     padding: 28px 18px 24px;
     width: min(94vw, 620px);
   }
+  .enquiry-box {
+    padding: 28px 18px 24px;
+  }
   .modal-header {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -2312,7 +2335,8 @@ html[lang="en"] .footer-nav-label {
     gap: 22px;
     display: contents;
   }
-  #enquiry-form {
+  #enquiry-form,
+  #enquiry-form-inline {
     display: grid;
   }
   .modal-form-panel {
@@ -2720,6 +2744,7 @@ body {
 
   .about-image img,
   .about-image video,
+  .about-image iframe,
   .about-image::before {
     border-radius: 24px;
   }

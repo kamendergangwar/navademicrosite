@@ -332,6 +332,19 @@
     setTimeout(closeModal, 3500);
   });
 
+  /* -------- INLINE ENQUIRY SECTION -------- */
+  const enquiryFormInline = document.getElementById('enquiry-form-inline');
+  const formSuccessInline = document.getElementById('form-success-inline');
+  if (enquiryFormInline && formSuccessInline) {
+    enquiryFormInline.addEventListener('submit', e => {
+      e.preventDefault();
+      formSuccessInline.hidden = false;
+      enquiryFormInline.querySelectorAll('input,button[type=submit]').forEach(el => {
+        el.disabled = true;
+      });
+    });
+  }
+
   const footer = document.querySelector('.site-footer');
   if (floatingCtas && footer && 'IntersectionObserver' in window) {
     const footerObserver = new IntersectionObserver(entries => {
