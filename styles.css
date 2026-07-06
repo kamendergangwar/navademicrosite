@@ -416,10 +416,10 @@ ul { list-style: none; }
 /* Archive watermark */
 .archive-note {
   position: absolute;
-  left: 12px;
+  right: 12px;
   top: 50%;
-  transform: translateY(-50%) rotate(-90deg);
-  transform-origin: left center;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: right center;
   font-size: 0.65rem;
   color: rgba(255,255,255,.5);
   white-space: nowrap;
