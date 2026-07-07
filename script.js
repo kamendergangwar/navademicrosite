@@ -323,25 +323,156 @@
     if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
   });
 
-  enquiryForm.addEventListener('submit', e => {
-    e.preventDefault();
-    formSuccess.hidden = false;
-    enquiryForm.querySelectorAll('input,button[type=submit]').forEach(el => {
-      el.disabled = true;
+  /* -------- ENQUIRY FORM VALIDATION + OTP FLOW -------- */
+  const enquiryFormInline = document.getElementById('enquiry-form-inline');
+  const otpPopup = document.getElementById('otp-popup');
+  const otpBackdrop = document.getElementById('otp-popup-backdrop');
+  const otpClose = document.getElementById('otp-popup-close');
+  const otpDigits = [...document.querySelectorAll('.otp-digit')];
+  const otpError = document.getElementById('otp-error');
+  const otpVerifyBtn = document.getElementById('otp-verify-btn');
+  const otpPhoneDisplay = document.getElementById('otp-phone-display');
+  let otpPendingForm = null;
+
+  // Only digits in phone fields
+  document.querySelectorAll('input[name="phone"]').forEach(inp => {
+    inp.addEventListener('input', () => {
+      inp.value = inp.value.replace(/\D/g, '').slice(0, 10);
     });
-    setTimeout(closeModal, 3500);
   });
 
-  /* -------- INLINE ENQUIRY SECTION -------- */
-  const enquiryFormInline = document.getElementById('enquiry-form-inline');
-  const formSuccessInline = document.getElementById('form-success-inline');
-  if (enquiryFormInline && formSuccessInline) {
+  function setFieldError(anchor, mr, en) {
+    if (!anchor) return;
+    anchor.classList.add('has-error');
+    const msg = document.createElement('p');
+    msg.className = 'field-error';
+    msg.textContent = currentLang === 'en' ? en : mr;
+    anchor.insertAdjacentElement('afterend', msg);
+  }
+
+  function clearFieldErrors(form) {
+    form.querySelectorAll('.field-error').forEach(el => el.remove());
+    form.querySelectorAll('.has-error').forEach(el => el.classList.remove('has-error'));
+  }
+
+  function validateEnquiryForm(form) {
+    clearFieldErrors(form);
+    let valid = true;
+
+    const nameInput = form.querySelector('input[name="name"]');
+    if (!nameInput.value.trim()) {
+      setFieldError(nameInput.closest('.form-field'), 'कृपया संपूर्ण नाव भरा.', 'Please enter your full name.');
+      valid = false;
+    }
+
+    const phoneInput = form.querySelector('input[name="phone"]');
+    if (!/^[6-9]\d{9}$/.test(phoneInput.value.trim())) {
+      setFieldError(phoneInput.closest('.form-field'), 'कृपया वैध १० अंकी मोबाइल क्रमांक भरा.', 'Please enter a valid 10 digit mobile number.');
+      valid = false;
+    }
+
+    if (!form.querySelector('.radio-group input[type="radio"]:checked')) {
+      setFieldError(form.querySelector('.form-field--radio'), 'कृपया श्रेणी निवडा.', 'Please select a category.');
+      valid = false;
+    }
+
+    const agree = form.querySelector('.form-check input[type="checkbox"]');
+    if (!agree.checked) {
+      setFieldError(form.querySelector('.form-check'), 'कृपया अटी व शर्ती स्वीकारा.', 'Please accept the Terms & Conditions.');
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  function openOtpPopup(form) {
+    otpPendingForm = form;
+    otpDigits.forEach(d => { d.value = ''; });
+    otpError.hidden = true;
+    otpPhoneDisplay.textContent = '+91 ' + form.querySelector('input[name="phone"]').value.trim();
+    otpPopup.classList.add('is-open');
+    otpPopup.setAttribute('aria-hidden', 'false');
+    window.requestAnimationFrame(() => otpDigits[0].focus());
+  }
+
+  function closeOtpPopup() {
+    otpPopup.classList.remove('is-open');
+    otpPopup.setAttribute('aria-hidden', 'true');
+  }
+
+  const thanksPopup = document.getElementById('thanks-popup');
+  const thanksBackdrop = document.getElementById('thanks-popup-backdrop');
+  const thanksOkBtn = document.getElementById('thanks-ok-btn');
+  let thanksPendingForm = null;
+
+  function completeEnquiry(form) {
+    thanksPendingForm = form;
+    thanksPopup.classList.add('is-open');
+    thanksPopup.setAttribute('aria-hidden', 'false');
+    window.requestAnimationFrame(() => thanksOkBtn.focus());
+  }
+
+  function closeThanksPopup() {
+    thanksPopup.classList.remove('is-open');
+    thanksPopup.setAttribute('aria-hidden', 'true');
+    if (thanksPendingForm) {
+      thanksPendingForm.reset();
+      clearFieldErrors(thanksPendingForm);
+      if (thanksPendingForm === enquiryForm) closeModal();
+      thanksPendingForm = null;
+    }
+  }
+
+  thanksOkBtn.addEventListener('click', closeThanksPopup);
+  thanksBackdrop.addEventListener('click', closeThanksPopup);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && thanksPopup.classList.contains('is-open')) closeThanksPopup();
+  });
+
+  otpDigits.forEach((digit, i) => {
+    digit.addEventListener('input', () => {
+      digit.value = digit.value.replace(/\D/g, '').slice(-1);
+      if (digit.value && i < otpDigits.length - 1) otpDigits[i + 1].focus();
+    });
+    digit.addEventListener('keydown', e => {
+      if (e.key === 'Backspace' && !digit.value && i > 0) otpDigits[i - 1].focus();
+    });
+  });
+
+  otpDigits[0].addEventListener('paste', e => {
+    const text = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+    if (!text) return;
+    e.preventDefault();
+    otpDigits.forEach((d, i) => { d.value = text[i] || ''; });
+    otpDigits[Math.min(text.length, otpDigits.length) - 1].focus();
+  });
+
+  otpVerifyBtn.addEventListener('click', () => {
+    const code = otpDigits.map(d => d.value).join('');
+    if (code.length !== otpDigits.length) {
+      otpError.hidden = false;
+      return;
+    }
+    closeOtpPopup();
+    if (otpPendingForm) completeEnquiry(otpPendingForm);
+    otpPendingForm = null;
+  });
+
+  otpClose.addEventListener('click', closeOtpPopup);
+  otpBackdrop.addEventListener('click', closeOtpPopup);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && otpPopup.classList.contains('is-open')) closeOtpPopup();
+  });
+
+  enquiryForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (validateEnquiryForm(enquiryForm)) openOtpPopup(enquiryForm);
+  });
+
+  if (enquiryFormInline) {
     enquiryFormInline.addEventListener('submit', e => {
       e.preventDefault();
-      formSuccessInline.hidden = false;
-      enquiryFormInline.querySelectorAll('input,button[type=submit]').forEach(el => {
-        el.disabled = true;
-      });
+      if (validateEnquiryForm(enquiryFormInline)) openOtpPopup(enquiryFormInline);
     });
   }
 

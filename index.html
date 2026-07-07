@@ -610,6 +610,39 @@
       </div>
     </div>
 
+    <!-- ===== THANK YOU POPUP ===== -->
+    <div class="thanks-popup" id="thanks-popup" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="thanks-title">
+      <div class="thanks-popup-backdrop" id="thanks-popup-backdrop"></div>
+      <div class="thanks-popup-box">
+        <div class="thanks-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12.5 9.5 18 20 6"/></svg>
+        </div>
+        <h3 class="thanks-title" id="thanks-title" data-en="Thank you!">धन्यवाद!</h3>
+        <p class="thanks-text" data-en="Our representative will contact you soon.">आमचे प्रतिनिधी लवकरच तुमच्याशी संपर्क साधतील.</p>
+        <button class="form-submit thanks-ok" id="thanks-ok-btn" type="button" data-en="OK">ओके</button>
+      </div>
+    </div>
+
+    <!-- ===== OTP POPUP ===== -->
+    <div class="otp-popup" id="otp-popup" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="otp-title">
+      <div class="otp-popup-backdrop" id="otp-popup-backdrop"></div>
+      <div class="otp-popup-box">
+        <button class="modal-close" id="otp-popup-close" type="button" aria-label="बंद करा">&#10005;</button>
+        <h3 class="otp-title" id="otp-title" data-en="OTP Verification">OTP पडताळणी</h3>
+        <p class="otp-sub"><span data-en="Enter the OTP sent to your mobile number">तुमच्या मोबाइल क्रमांकावर पाठवलेला OTP प्रविष्ट करा</span><strong id="otp-phone-display"></strong></p>
+        <div class="otp-inputs">
+          <input type="tel" inputmode="numeric" autocomplete="one-time-code" maxlength="1" class="otp-digit" aria-label="OTP अंक १" />
+          <input type="tel" inputmode="numeric" maxlength="1" class="otp-digit" aria-label="OTP अंक २" />
+          <input type="tel" inputmode="numeric" maxlength="1" class="otp-digit" aria-label="OTP अंक ३" />
+          <input type="tel" inputmode="numeric" maxlength="1" class="otp-digit" aria-label="OTP अंक ४" />
+          <input type="tel" inputmode="numeric" maxlength="1" class="otp-digit" aria-label="OTP अंक ५" />
+          <input type="tel" inputmode="numeric" maxlength="1" class="otp-digit" aria-label="OTP अंक ६" />
+        </div>
+        <p class="otp-error" id="otp-error" hidden data-en="Please enter the complete OTP">कृपया संपूर्ण OTP प्रविष्ट करा</p>
+        <button class="form-submit otp-verify" id="otp-verify-btn" type="button" data-en="Verify">सत्यापित करा</button>
+      </div>
+    </div>
+
     <!-- ===== PMAY INFO POPUP ===== -->
     <div class="pmay-popup" id="pmay-popup" aria-hidden="true" role="dialog" aria-modal="true">
       <div class="pmay-popup-backdrop" id="pmay-popup-backdrop"></div>
