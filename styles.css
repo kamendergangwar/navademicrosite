@@ -1852,6 +1852,13 @@ html[lang="en"] .footer-nav-label {
   color: #34375f;
   font-weight: 700;
 }
+.form-check span a {
+  color: inherit;
+  text-decoration: underline;
+}
+.form-check span a:hover {
+  color: var(--blue, #2d67a4);
+}
 
 .form-field {
   margin-bottom: 14px;
